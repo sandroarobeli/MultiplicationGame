@@ -1,0 +1,298 @@
+<!-- HTML elements 
+UI consists of an input element of type 'number' that ensures only numeric characters can be entered. Also, a 'Submit' button element clicking 
+on which evaluates user's answers and credits Correct or Incorrect sets accordingly. Another button element 'Restart', resets answer count to zero and restarts the game. The buttons and headers are placed within standardized div elements to insure uniformly reliable user experience. 
+-->
+<div 
+     class='flex-container' 
+     style='margin: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; 
+            align-items: center;'
+     >
+    <div 
+         class='row' 
+         style='margin: 0 auto;
+                width: 100%;
+                height: 60px;
+                display: flex; 
+                justify-content: space-around;
+                align-items: center;'
+         >
+    	<h2 
+            style='color: #3F51B5;
+                   text-align: center;'
+            >Enter your answer and click Submit
+        </h2>
+    </div>
+    <div 
+         class='row' 
+         style='margin: 0 auto; 
+                width: 100%; 
+                height: 60px; 
+                display: flex;
+                justify-content: space-around; 
+                align-items: center;'
+         >
+    	<div 
+             style='width: 250px;
+                    height: 60px;'
+             >
+         	<h3 
+                style='background:#fff; 
+                   	   font-size: 3rem;
+                       height: 60px;
+                       line-height: 60px;
+                       margin: 0 -3px 0 0;
+                       text-align: center;
+                       color: #3F51B5;
+                       border-radius:5px;
+                       border: 2px solid #eee;
+                       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);'
+                id='currentQuestion'
+         	    >
+            </h3>
+         </div>
+    	 <div 
+              style='width: 250px; 
+                     height: 60px;'
+              >
+        	<input style='margin: 0 auto;
+                      	  border: 2px solid #eee;
+                          box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+                          border-radius:5px;
+                          font-size: 3rem;
+                          background: #fff;
+                          width: 250px;
+                          height: 60px;
+                          margin: 0 auto;
+                          color: #3F51B5;'
+               	   type='number' 
+               	   name='' 
+                   id='currentAnswer' 
+                   min='0' max='81' step='1' 
+                   placeholder='Answer here' 
+         	/>
+         </div>
+         <div 
+              style='width: 250px; 
+                     height: 60px;'
+              >
+         	<button style='background: #3F51B5; 
+                           font-size: 3rem;
+                           width: 250px;
+                           height: 58px;
+                           line-height: 56px;
+                           margin: 0;
+                           font-weight: 600;
+                           border-radius:5px;
+                           color:#fff;'
+                	type='button'
+                	id='submit'
+                	onclick='handleSubmit()'
+        	>Submit<audio id='submitSound' src='https://www.fesliyanstudios.com/play-mp3/6683'/>
+            </button>
+         </div>
+    </div>
+    <div 
+         class='row' 
+         style='margin: 0 auto; 
+                width: 100%; 
+                height: 60px; 
+                display: flex; 
+                justify-content: space-around; 
+                align-items: center;'
+         >
+    	<div 
+             style='width: 250px; 
+                    height: 60px;'
+             >
+        	<h3 style='background:#fff; 
+                       font-size: 3rem;
+                       height: 60px;
+                       line-height: 60px;
+                       margin: 0 0 0 0;
+                       text-align: center;
+                       color: #3fef10;
+                       border-radius:5px;
+                       border: 2px solid #3fef10;
+                       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);'
+            id='greenScore'
+          >Correct: <span id='green'></span>
+            </h3>
+        </div>
+        <div 
+             style='width: 250px; 
+                    height: 60px;'
+             >
+        	<h3 style='background:#fff; 
+                       font-size: 3rem;	
+                       height: 60px;
+                       line-height: 60px;
+                       margin: 0 0 0 0;
+                       text-align: center;
+                       color: #f60e09;
+                       border-radius:5px;
+                       border: 2px solid #f60e09;
+                       box-shadow:0 0 15px 4px rgba(0,0,0,0.06);'
+            id='redScore'
+         >Incorrect: <span id='red'></span>
+            </h3>
+        </div>
+        <div 
+             style='width: 250px;
+                    height: 60px;'
+             >
+        	<button style='background: #3F51B5; 
+                           font-size: 3rem;
+                           width: 250px;
+                           height: 58px;
+                           line-height: 56px;
+                           margin: 0;
+                           font-weight: 600;
+                           border-radius:5px;
+                           color:#fff;'
+                type='button'
+                id='restart'
+                onclick='handleRestart()'
+        >Restart<audio id='restartSound' src='https://www.fesliyanstudios.com/play-mp3/6683'/>
+            </button>
+        </div>
+    </div>
+     <div 
+          class='row' 
+          style='margin: 0 auto; 
+                 width: 100%; 
+                 height: 60px; 
+                 display: flex; 
+                 justify-content: space-around;
+                 align-items: center;'
+          >
+    	<h3 style='background:#fff; 
+                   font-size: 3rem;
+                   height: 60px;
+                   line-height: 60px;
+                   margin: 0;
+                   text-align: center;
+                   color: #3F51B5;
+                   border-radius:5px;
+                   border: 2px solid #eee;
+                   box-shadow:0 0 15px 4px rgba(0,0,0,0.06)'
+        id='gameResult'
+         ></h3>
+    </div>
+ </div>
+
+<!--   CSS   -->
+<!-- media accomodates two additional viewport sizes -->
+<style>
+    
+    /* Mobile phones */
+    @media screen and (max-width: 767px){
+       .flex-container {
+          transform: scale(0.60);
+         }
+     }
+    /* Tablets and iPads */
+    @media screen and (min-width: 768px) and (max-width: 1023px){
+       .flex-container {
+          transform: scale(0.8);
+       }
+    }
+</style>
+
+<!--   JS   --->
+<script>
+    // Element declaration
+    const submitButton = document.getElementById('submit');
+    const restartButton = document.getElementById('restart');
+    const submitSound = document.getElementById('submitSound');
+    const restartSound = document.getElementById('restartSound');
+    const currentQuestion = document.getElementById('currentQuestion');
+	const currentAnswer = document.getElementById('currentAnswer');
+	const gameResult = document.getElementById('gameResult');
+	const greenScore = document.getElementById('green');
+	const redScore = document.getElementById('red');
+	let indexer; 
+	let green; 
+	let red; 
+    
+   // Standalone audio elements
+    const successSound = new Audio('https://www.pacdv.com/sounds/applause-		sounds/app-29.wav')
+	const failureSound = new Audio('https://www.pacdv.com/sounds/voices/no-		thats-not-gonna-do-it.wav')
+    const noAnswerSound = new         Audio('https://www.pacdv.com/sounds/mechanical_sound_effects/glass_breaking_2.wav')			                                 
+   
+    // Question set
+    const matrix = [
+    '1 X 1','1 X 2', '1 X 3', '1 X 4', '1 X 5', '1 X 6', '1 X 7', '1 x 8', '1 X 9', '2 X 1', '2 X 2', '2 X 3', '2 X 4', '2 X 5', '2 X 6', '2 X 7', '2 X 8', '2 X 9', '3 X 1', '3 X 2', '3 X 3', '3 X 4', '3 X 5', '3 X 6', '3 X 7', '3 X 8', '3 X 9', '4 X 1', '4 X 2', '4 X 3', '4 X 4', '4 X 5', '4 X 6', '4 X 7', '4 X 8', '4 X 9', '5 X 1', '5 X 2', '5 X 3', '5 X 4', '5 X 5', '5 X 6', '5 X 7', '5 X 8', '5 X 9', '6 X 1', '6 X 2', '6 X 3', '6 X 4', '6 X 5', '6 X 6', '6 X 7', '6 X 8', '6 X 9', '7 X 1', '7 X 2', '7 X 3', '7 X 4', '7 X 5', '7 X 6', '7 X 7', '7 X 8', '7 X 9', '8 X 1', '8 X 2', '8 X 3', '8 X 4', '8 X 5', '8 X 6', '8 X 7', '8 X 8', '8 X 9', '9 X 1', '9 X 2', '9 X 3', '9 X 4', '9 X 5', '9 X 6', '9 X 7', '9 X 8', '9 X 9'
+    ]
+    
+  // Random integer generator
+   	const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+  
+ 
+  // Animation handling
+    const handleActive = (button) => {
+        submitSound.currentTime = 0
+        submitSound.play()
+    	button.style.backgroundColor = '#5698a9'
+        button.style.transform = 'scale(0.95)'
+        setTimeout(() => {
+			button.style.backgroundColor = '#3F51B5'
+        	button.style.transform = 'scale(1.0)'
+        	}, 100)
+    }
+    
+  // Initial load and restart handling
+   	const handleRestart = () => {
+        handleActive(restartButton)
+        submitButton.disabled = false;
+   		indexer = getRandomInt(81);
+   		green = 0;
+   		red = 0;
+   		currentQuestion.textContent = matrix[indexer];
+   		greenScore.textContent = green;
+   		redScore.textContent = red;
+   		gameResult.textContent = '';
+   		currentAnswer.value = '';
+	};
+  
+  // Initializes somponents ad page loads  
+    window.addEventListener('DOMContentLoaded', handleRestart());
+  
+  // Load next question
+   	const getNext = () => {
+  		currentAnswer.value = '';
+  		indexer = getRandomInt(81);
+  		currentQuestion.textContent = matrix[indexer]; 
+	};
+    
+  // Summarize and display final result
+   	const endGame = () => {
+        green > red ? successSound.play() : failureSound.play()
+    	gameResult.textContent = green > red ? 'Great job! Play again to 			strengthen your knowledge' : 'You can do better, try again';  
+        submitButton.disabled = true;
+	};
+    
+  // Evaluation handling
+    const handleSubmit = () => {
+    	   handleActive(submitButton)
+        if (currentAnswer.value === '') {
+            noAnswerSound.play()
+            gameResult.textContent = 'Please enter your answer and press 				Submit';
+        } else {
+            let trueOrFalse = eval(matrix[indexer].replace(' X ', '*')) 			 		== currentAnswer.value;
+            if (trueOrFalse) {
+     			green++;
+    			greenScore.textContent = green;
+   				gameResult.textContent = 'Correct';
+    		} else {
+    			red++;
+    			redScore.textContent = red;
+   				gameResult.textContent = 'Incorrect';
+    		}
+            green + red < 10 ? getNext() : endGame()
+        }
+    }
+    
+</script>
